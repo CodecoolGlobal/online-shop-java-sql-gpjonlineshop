@@ -1,5 +1,6 @@
 package com.codecool.dao;
 
+import com.codecool.modules.Category;
 import com.codecool.modules.Product;
 
 import java.sql.*;
@@ -13,14 +14,13 @@ public class ProductDao extends Dao {
         connect();
 
         try {
-            ResultSet results = statement.executeQuery("SELECT * FROM vacuumCleaners;");
+            ResultSet results = statement.executeQuery("SELECT * FROM vacuumCleaners JOIN categories ON vacuumCleaners.category = categories.id;");
             while (results.next()) {
                 int id = results.getInt("id");
                 String name = results.getString("name");
                 int price = results.getInt("price");
                 int amount = results.getInt("amount");
-                Category category = join.// jak pobrac?
-
+                Category category = new Category(results.getString("category.name"));
                 Product product = new Product(id, name, price, amount, category);
                 products.add(product);
             }
