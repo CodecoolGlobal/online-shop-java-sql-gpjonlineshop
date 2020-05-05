@@ -1,3 +1,5 @@
+package com.codecool.user;
+
 import java.util.Date;
 
 public abstract class User {
