@@ -8,7 +8,7 @@ public abstract class User {
     private String surname;
     private String email;
     private String password;
-    private Date hasJoined;
+    private Date createdAt;
 
     public User(int id, String name, String surname, String email, String password, Date hasJoined) {
         this.id = id;
@@ -16,7 +16,7 @@ public abstract class User {
         this.surname = surname;
         this.email = email;
         this.password = password;
-        this.hasJoined = hasJoined;
+        this.createdAt = hasJoined;
     }
 
     // czy wszystkie potrzebne
@@ -52,11 +52,11 @@ public abstract class User {
         this.password = password;
     }
 
-    public Date getHasJoined() {
-        return hasJoined;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setHasJoined(Date hasJoined) {
-        this.hasJoined = hasJoined;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

@@ -1,5 +1,9 @@
 package com.codecool.user;
 
+import com.codecool.modules.Basket;
+import com.codecool.modules.Order;
+import com.codecool.modules.Product;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,10 +13,8 @@ public class Customer extends User {
     private List<Order> orderList;
 
     public Customer(int id, String name, String surname, String email, String password,
-                    Date hasJoined, Basket basket, List<Order> orderList) {
-        super(id, name, surname, email, password, hasJoined);
-        this.basket = basket;
-        this.orderList = new ArrayList<>();
+                    Date createdAt) {
+        super(id, name, surname, email, password, createdAt);
     }
 
     public String currentOrderToString(Order order) { //ewentualnie w formie tabelki fliptable
