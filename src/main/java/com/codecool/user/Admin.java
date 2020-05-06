@@ -4,9 +4,15 @@ import java.util.Date;
 
 public class Admin extends User {
 
+    public Admin() {
+        super();
+    };
+/*
     public Admin(int id, String name, String surname, String email, String password, Date hasJoined) {
         super(id, name, surname, email, password, hasJoined);
     }
+
+ */
 
     //wszytskie polaczenie z db i tam operacja
     public void addUser() {
