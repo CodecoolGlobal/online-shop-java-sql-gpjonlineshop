@@ -24,9 +24,6 @@ public abstract class  Controller {
         view = new View();
         actionMap = new HashMap<String,Runnable>();
        //  ViewShop view = new ViewShop(dao.getTable("products"));
-
-
-
     }
 
     void getAction(HashMap<String, Runnable> actionMap){
