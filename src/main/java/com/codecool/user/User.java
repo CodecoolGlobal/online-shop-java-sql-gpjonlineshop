@@ -10,14 +10,16 @@ public abstract class User {
     private String password;
     private Date createdAt;
 
-    public User(int id, String name, String surname, String email, String password, Date hasJoined) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
-        this.createdAt = hasJoined;
-    }
+    User(){}
+
+//    public User(int id, String name, String surname, String email, String password, Date hasJoined) {
+//        this.id = id;
+//        this.name = name;
+//        this.surname = surname;
+//        this.email = email;
+//        this.password = password;
+//        this.createdAt = hasJoined;
+//    }
 
     // czy wszystkie potrzebne
     public String getName() {

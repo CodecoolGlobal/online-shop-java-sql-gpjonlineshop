@@ -1,9 +1,12 @@
 package com.codecool.dao;
 
+import com.codecool.modules.Product;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public abstract class Dao {
     protected Connection connection;
@@ -11,6 +14,8 @@ public abstract class Dao {
 
     public static final String DB_NAME = "src/main/resources/online_shop.db";
     public static final String CONNECTION_STRING = "jdbc:sqlite:" + DB_NAME;
+
+    public abstract List<Product> getTable(String tableName);
 
     public void connect() {
         try {

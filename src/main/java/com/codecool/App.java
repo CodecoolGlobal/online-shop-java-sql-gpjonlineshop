@@ -1,13 +1,12 @@
 package com.codecool;
 
+import com.codecool.controlers.Controller;
+
 /**
  * Hello world!
  *
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
+    // Controller controller = new Controller();
 }

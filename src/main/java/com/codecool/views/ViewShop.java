@@ -4,8 +4,14 @@ import com.codecool.modules.Order;
 import com.codecool.modules.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ViewShop {
+
+    public ViewShop(List<Product> products){
+
+    }
+
     public String currentOrderToString(Order order) {
         StringBuilder currentOrder = new StringBuilder();
         int index = 0;

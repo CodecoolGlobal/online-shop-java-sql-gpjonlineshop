@@ -12,8 +12,12 @@ public class Customer extends User {
     private Basket basket;
     private List<Order> orderList;
 
-    public Customer(int id, String name, String surname, String email, String password,
-                    Date createdAt) {
-        super(id, name, surname, email, password, createdAt);
+    public Customer(){
+        super();
     }
+
+//    public Customer(int id, String name, String surname, String email, String password,
+//                    Date createdAt) {
+//        super(id, name, surname, email, password, createdAt);
+//    }
 }

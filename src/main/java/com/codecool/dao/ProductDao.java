@@ -9,12 +9,12 @@ import java.util.List;
 
 public class ProductDao extends Dao {
 
-    public List<Product> getProducts() {
+    public List<Product> getTable(String tableName) {
         List<Product> products = new ArrayList<>();
         connect();
 
         try {
-            ResultSet results = statement.executeQuery("SELECT * FROM vacuumCleaners JOIN categories ON vacuumCleaners.category = categories.id;");
+            ResultSet results = statement.executeQuery("SELECT * FROM" + tableName + ";");
             while (results.next()) {
                 int id = results.getInt("id");
                 String name = results.getString("name");
