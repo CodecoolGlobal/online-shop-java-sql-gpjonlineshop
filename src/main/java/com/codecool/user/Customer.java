@@ -2,10 +2,7 @@ package com.codecool.user;
 
 import com.codecool.modules.Basket;
 import com.codecool.modules.Order;
-import com.codecool.modules.Product;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Customer extends User {
@@ -20,4 +17,11 @@ public class Customer extends User {
 //                    Date createdAt) {
 //        super(id, name, surname, email, password, createdAt);
 //    }
+
+    public void addProductToBasket() {}
+    public void editProductQuantity() {}
+    public void deleteProductFromBasket() {}
+    public void placeAnOrder() {}
+
+
 }

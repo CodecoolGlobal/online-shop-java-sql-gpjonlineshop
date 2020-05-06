@@ -2,6 +2,7 @@ package com.codecool.controlers;
 
 import com.codecool.dao.Dao;
 import com.codecool.dao.ProductDao;
+import com.codecool.user.Admin;
 import com.codecool.user.Customer;
 import com.codecool.user.User;
 import com.codecool.views.View;
@@ -12,24 +13,44 @@ import java.util.Map;
 import java.util.Set;
 
 public abstract class  Controller {
-    private View view;
-    private User user;
+
+    private static Controller controller;
+
+    public static Controller initializeController() {
+        controller = new IncognitoController();
+        return controller;
+    };
+
+    public static Controller getController() {
+        return controller;
+    }
+
+
+
+
+
+    View view;
+    Customer customer;
+    Admin admin;
     Dao dao;
     HashMap<String, Runnable> actionMap;
 
     Controller(){
 
-        user = new Customer();
+        customer = new Customer();
+        admin = new Admin();
         dao = new ProductDao();
         view = new View();
         actionMap = new HashMap<String,Runnable>();
+        this.actionMap.put("Show all products", () -> this.dao.getTable("Product")  );
+        this.actionMap.put("Display products from category", () -> dao.displayProductsFromCategory());
        //  ViewShop view = new ViewShop(dao.getTable("products"));
 
 
 
     }
 
-    void getAction(HashMap<String, Runnable> actionMap){
+    public void getAction(){
         String[][] screen = new String[actionMap.size()][2];
         int i=0;
         String input =  "";
@@ -44,6 +65,10 @@ public abstract class  Controller {
         actionMap.get(input).run();
 
     }
+
+    void signIn() {};
+    void logOut() {}
+    void quit() {};
 
     private String getInput(String[][] screen){
         String[] headers = new String[]{"Key:", "Action:"};

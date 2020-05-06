@@ -8,5 +8,12 @@ import com.codecool.controlers.Controller;
  */
 public class App 
 {
-    // Controller controller = new Controller();
+    public static void main(String[] args) {
+        Controller controller = Controller.initializeController();
+        while(true) {
+            controller = Controller.getController();
+            controller.getAction();
+        }
+    }
+
 }
