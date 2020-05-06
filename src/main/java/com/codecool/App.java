@@ -10,7 +10,7 @@ public class App
 {
     public static void main(String[] args) {
         Controller controller = Controller.initializeController();
-        while(true) {
+        while(controller != null) {
             controller = Controller.getController();
             controller.getAction();
         }

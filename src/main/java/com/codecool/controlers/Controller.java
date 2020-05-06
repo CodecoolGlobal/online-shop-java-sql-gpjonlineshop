@@ -26,14 +26,12 @@ public abstract class  Controller {
     }
 
 
-
-
-
     View view;
     Customer customer;
     Admin admin;
     Dao dao;
     HashMap<String, Runnable> actionMap;
+    HashMap<Integer, String> actionKeysMap;
 
     Controller(){
 
@@ -41,6 +39,7 @@ public abstract class  Controller {
         admin = new Admin();
         dao = new ProductDao();
         view = new View();
+        actionKeysMap = new HashMap<>();
         actionMap = new HashMap<String,Runnable>();
         this.actionMap.put("Show all products", () -> this.dao.getTable("Product")  );
         this.actionMap.put("Display products from category", () -> dao.displayProductsFromCategory());
@@ -63,9 +62,19 @@ public abstract class  Controller {
 
     }
 
-    void signIn() {};
-    void logOut() {}
-    void quit() {};
+    void signIn() {
+
+        restartActionKeyMap();
+    }
+
+    void logOut() {
+        this.admin = null;
+        this.customer = null;
+        controller = new IncognitoController();
+    }
+    void quit() {
+        controller = null;
+    };
 
     private String getInput(String[][] screen){
         String[] headers = new String[]{"Key:", "Action:"};
@@ -74,6 +83,14 @@ public abstract class  Controller {
         // get choice
         // map choice into key
         return "";
+    }
+
+    void restartActionKeyMap() {
+        int n = 1;
+        for (String action : actionMap.keySet()) {
+            actionKeysMap.put(n, action);
+            n++;
+        }
     }
 
 }
