@@ -9,6 +9,7 @@ import com.codecool.views.ViewShop;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public abstract class  Controller {
     private View view;
@@ -36,17 +37,21 @@ public abstract class  Controller {
             screen[i][0] = String.valueOf(i);
             screen[i][1] = entry.getKey();
             i++;
-
         }
-        String[] headers = new String[]{"Key:", "Action:"};
-        this.view.displayContent(screen, headers);
 
-        // get input
-        // input = getInput();
-        //
+        input = getInput(screen);
 
         actionMap.get(input).run();
 
+    }
+
+    private String getInput(String[][] screen){
+        String[] headers = new String[]{"Key:", "Action:"};
+        this.view.displayContent(screen, headers);
+        int choice = 0;
+        // get choice
+        // map choice into key
+        return "";
     }
 
 }
