@@ -3,6 +3,7 @@ com/codecool/dao/Dao.class
 com/codecool/modules/Basket$1.class
 com/codecool/modules/Order.class
 com/codecool/modules/OrderStatus.class
+com/codecool/Main.class
 com/codecool/modules/Product.class
 com/codecool/controlers/Controller.class
 com/codecool/user/Customer.class
@@ -13,7 +14,6 @@ com/codecool/dao/ProductDao.class
 com/codecool/modules/Basket$ProductIterator.class
 com/codecool/modules/Command.class
 com/codecool/dao/UserDao.class
-com/codecool/App.class
 com/codecool/controlers/AdminController.class
 com/codecool/controlers/CustomerController.class
 com/codecool/views/View.class

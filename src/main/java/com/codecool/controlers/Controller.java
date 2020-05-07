@@ -63,14 +63,16 @@ public abstract class  Controller {
     public void getAction(){
         String[][] screen = new String[actionMap.size()][2];
         int i=0;
-        String input =  "";
         for(Map.Entry<String, Runnable> entry : actionMap.entrySet()){
             screen[i][0] = String.valueOf(i);
             screen[i][1] = entry.getKey();
             i++;
         }
-        input = getInput(screen);
-        actionMap.get(input).run();
+        this.view.setHeaders(new String[]{"Key:", "Action:"});
+        this.view.setObjectList(this.commandList);
+        this.view.displayContent();
+        int input = inputProvider.getProperActionKey(commandList.size());
+        actionMap.get(((Command)commandList.get(input)).getAction()).run();
         view.displayContent();
     }
 
@@ -105,9 +107,7 @@ public abstract class  Controller {
     };
 
     private String getInput(String[][] screen){
-        this.view.setHeaders(new String[]{"Key:", "Action:"});
-        this.view.setObjectList(this.commandList);
-        this.view.displayContent();
+
         int choice = 0;
         // get choice
         // map choice into key

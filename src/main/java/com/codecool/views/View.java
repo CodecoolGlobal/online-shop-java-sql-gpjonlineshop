@@ -10,14 +10,12 @@ import java.util.List;
 // pozniej bedzie abstrack  abstract //
 
 public class View {
-    private String[][] screen;
+    private String[] headers;
+    private List<Displayable> objectList;
 
     public void setHeaders(String[] headers) {
         this.headers = headers;
     }
-
-    private String[] headers;
-    private List<Displayable> objectList;
 
     public List<Displayable> getObjectList() {
         return objectList;
@@ -32,9 +30,12 @@ public class View {
     }
 
     public void displayContent(){
-        String[][] data =  screen;
-        for (Displayable product: objectList)
-        System.out.println(FlipTable.of(headers, data));
+        String[][] screen = new String[objectList.size()+1][headers.length];
+        String[] line = new String[headers.length];
+        for (int i=0; i<objectList.size(); i++){
+            screen[i] = objectList.get(i).returnStringList();
+        }
+        System.out.println(FlipTable.of(this.headers, screen));
     }
 
 }

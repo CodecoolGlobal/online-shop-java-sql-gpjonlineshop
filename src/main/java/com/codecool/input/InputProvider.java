@@ -13,9 +13,9 @@ public class InputProvider {
 
     }
 
-    public int getProperActionKey(Set<Integer> actionKeys) {
+    public int getProperActionKey(int actionKeys) {
         int key = -1;
-        while (!(actionKeys.contains(key))) {
+        while (!( (-1 < key) && (key < actionKeys))) {
             String input = scanner.nextLine();
             if (input.chars().allMatch( Character::isDigit )) {
                 key = Integer.parseInt(input);

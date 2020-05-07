@@ -50,7 +50,9 @@
             </descriptorRefs>
             <archive>
               <manifest>
-                <mainClass>com.codecool.App</mainClass>
+                <addClasspath>true</addClasspath>
+                <classpathPrefix>lib/</classpathPrefix>
+                <mainClass>com.codecool.Main</mainClass>
               </manifest>
             </archive>
           </configuration>

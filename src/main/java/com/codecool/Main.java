@@ -6,7 +6,7 @@ import com.codecool.controlers.Controller;
  * Hello world!
  *
  */
-public class App
+public class Main
 {
     public static void main(String[] args) {
         Controller controller = Controller.initializeController();
