@@ -75,14 +75,14 @@ public abstract class  Controller {
         this.view.displayContent();
         int input = inputProvider.getProperActionKey(commandList.size());
         actionMap.get(((Command)commandList.get(input)).getAction()).run();
-        view.displayContent();
+        this.view.displayContent();
     }
 
     void signIn() {
         String nick = inputProvider.getValidateWord();
         String password = inputProvider.getValidateWord();
         List<Displayable> users = new UserDao().getTable(nick);
-        if (!(users.isEmpty())) {
+        if ((users.isEmpty())) {
             return;
 
         }

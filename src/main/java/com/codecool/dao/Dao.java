@@ -13,7 +13,7 @@ public abstract class Dao {
     protected Connection connection;
     protected Statement statement;
 
-    public static final String DB_NAME = "src/main/resources/online_shop.db";
+    public static final String DB_NAME = "./src/main/resources/online_shop.db";
     public static final String CONNECTION_STRING = "jdbc:sqlite:" + DB_NAME;
 
     public abstract List<Displayable> getTable(String searchName);

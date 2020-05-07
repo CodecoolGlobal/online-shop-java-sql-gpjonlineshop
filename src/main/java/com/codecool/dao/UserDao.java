@@ -21,7 +21,7 @@ public class UserDao extends Dao {
         connect();
 
         try {
-            ResultSet results = statement.executeQuery("SELECT * FROM product WHERE name = \"" + searchName + "\";");
+            ResultSet results = statement.executeQuery("SELECT * FROM product WHERE name LIKE \"" + searchName + "\";");
             while (results.next()) {
                 int id = results.getInt("id");
                 String name = results.getString("name");
