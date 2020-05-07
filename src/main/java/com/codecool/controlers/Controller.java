@@ -73,13 +73,6 @@ public abstract class  Controller {
 
     public void getAction(){
         restartActionKeyMap();
-        String[][] screen = new String[actionMap.size()][2];
-        int i=0;
-        for(Map.Entry<String, Runnable> entry : actionMap.entrySet()){
-            screen[i][0] = String.valueOf(i);
-            screen[i][1] = entry.getKey();
-            i++;
-        }
         this.view.setCommaandList(this.commandList);
         this.view.displayContent();
         int input = inputProvider.getProperActionKey(commandList.size());

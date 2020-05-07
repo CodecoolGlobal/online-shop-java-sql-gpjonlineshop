@@ -41,7 +41,8 @@ public class View {
 
     public void displayContent() {
         String[] superHeader = {"Actions", "Output", "Basket"};
-        String[] contentContainers = {displayTertion(commandHeaders, commaandList) ,displayTertion(querryHeaders, querryList) , displayTertion(basketHeaders, basketList)};
+        String[][] contentContainers = {{displayTertion(commandHeaders, commaandList) ,displayTertion(querryHeaders, querryList) , displayTertion(basketHeaders, basketList)}};
+        System.out.println(FlipTable.of(superHeader, contentContainers));
     }
 
     public String displayTertion(String[] headers, List<Displayable> rowList){
