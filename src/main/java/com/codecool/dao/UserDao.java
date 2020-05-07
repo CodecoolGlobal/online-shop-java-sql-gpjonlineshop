@@ -2,6 +2,8 @@ package com.codecool.dao;
 
 import com.codecool.modules.Category;
 import com.codecool.modules.Product;
+import com.codecool.user.Admin;
+import com.codecool.user.Customer;
 import com.codecool.user.User;
 
 import java.sql.ResultSet;
@@ -31,8 +33,8 @@ public class UserDao extends  Dao {
                 SimpleDateFormat originalFormat = new SimpleDateFormat("yyyyMMdd");
                 Date creationDate = originalFormat.parse(created_at.toString());
                 String type = results.getString("type");
-                User user = new User(id, name, surname, email, password, creationDate, type) {
-                };
+                User user = new Customer(id, name, surname, email, password, creationDate);
+                if (type == "admin") user = new Admin(id, name, surname, email, password, creationDate);
                 users.add(user);
             }
             results.close();
