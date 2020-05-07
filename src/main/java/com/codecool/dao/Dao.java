@@ -1,5 +1,6 @@
 package com.codecool.dao;
 
+import com.codecool.modules.Displayable;
 import com.codecool.modules.Product;
 
 import java.sql.Connection;
@@ -15,7 +16,8 @@ public abstract class Dao {
     public static final String DB_NAME = "src/main/resources/online_shop.db";
     public static final String CONNECTION_STRING = "jdbc:sqlite:" + DB_NAME;
 
-    public abstract List<?> getTable(String searchName);
+    public abstract List<Displayable> getTable(String searchName);
+    public abstract List<Displayable> getCategory(String foreignKeyName);
 
     public void connect() {
         try {

@@ -5,6 +5,11 @@ import java.util.ArrayList;
 public class Category {
 
     private int id;
+
+    public String getName() {
+        return name;
+    }
+
     private String name;
     private boolean isAvailable;
     private ArrayList<Product> products;
@@ -12,6 +17,7 @@ public class Category {
     public Category(String name) {
 
     }
+
 
 
 }

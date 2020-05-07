@@ -1,7 +1,5 @@
 package com.codecool.dao;
 
-import com.codecool.modules.Category;
-import com.codecool.modules.Product;
 import com.codecool.user.Admin;
 import com.codecool.user.Customer;
 import com.codecool.user.User;
@@ -45,4 +43,10 @@ public class UserDao extends  Dao {
         }
         return users;
     }
+
+    public List<User> getCategory(String foreignKeyName){
+        List<User> users = new ArrayList<>();
+        return users;
+    }
+
 }

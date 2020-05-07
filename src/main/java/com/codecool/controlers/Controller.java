@@ -3,16 +3,15 @@ package com.codecool.controlers;
 import com.codecool.dao.Dao;
 import com.codecool.dao.ProductDao;
 import com.codecool.dao.UserDao;
+import com.codecool.modules.Displayable;
 import com.codecool.user.Admin;
 import com.codecool.user.Customer;
 import com.codecool.user.User;
 import com.codecool.views.View;
-import com.codecool.views.ViewShop;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public abstract class  Controller {
 
@@ -27,7 +26,8 @@ public abstract class  Controller {
         return controller;
     }
 
-
+    Admin admin;
+    Customer customer;
     View view;
     User user;
     Dao dao;
@@ -40,9 +40,22 @@ public abstract class  Controller {
         view = new View();
         actionKeysMap = new HashMap<>();
         actionMap = new HashMap<String,Runnable>();
-        this.actionMap.put("Show all products", () -> this.dao.getTable("Product")  );
-        // this.actionMap.put("Display products from category", () -> dao.displayProductsFromCategory());
-       //  ViewShop view = new ViewShop(dao.getTable("products"));
+        this.actionMap.put("Show all products", () -> view.setObjectList(this.dao.getTable("%")));
+        this.actionMap.put("Display products from category", () -> view.setObjectList(this.displayProductsFromCategory()));
+        this.actionMap.put("Search product with given name", () -> view.setObjectList(this.displayProductsWithGivenName()));
+
+    }
+
+    private List<Displayable> displayProductsWithGivenName(){
+        String searchTerm = "%";
+        // get input into category
+        return  this.dao.getTable(searchTerm);
+    }
+
+    private List<Displayable> displayProductsFromCategory(){
+        String category = "";
+        // get input into category
+        return this.dao.getCategory(category);
     }
 
     public void getAction(){
@@ -54,11 +67,9 @@ public abstract class  Controller {
             screen[i][1] = entry.getKey();
             i++;
         }
-
         input = getInput(screen);
-
         actionMap.get(input).run();
-
+        view.displayContent();
     }
 
     void signIn() {
@@ -92,8 +103,9 @@ public abstract class  Controller {
     };
 
     private String getInput(String[][] screen){
-        String[] headers = new String[]{"Key:", "Action:"};
-        this.view.displayContent(screen, headers);
+        this.view.setHeaders(new String[]{"Key:", "Action:"});
+        this.view.setObjectList(this.actionKeysMap);
+        this.view.displayContent();
         int choice = 0;
         // get choice
         // map choice into key
