@@ -31,9 +31,11 @@ public class View {
 
     public void displayContent(){
         String[][] screen = new String[objectList.size()][headers.length];
-        String[] line = new String[headers.length];
         for (int i=0; i<objectList.size(); i++){
-            screen[i] = objectList.get(i).returnStringList();
+            String[] line = objectList.get(i).returnStringList();
+            for (int j=0; j<headers.length; j++) {
+                screen[i][j] = line[j];
+            }
         }
         System.out.println(FlipTable.of(this.headers, screen));
     }

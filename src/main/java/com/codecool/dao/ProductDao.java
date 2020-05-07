@@ -43,14 +43,16 @@ public class ProductDao extends Dao {
         connect();
 
         try {
-            ResultSet results = statement.executeQuery("SELECT * FROM Product LEFT JOIN Category ON Category.id = Product.category  " +
-                                                            "WHERE Category.name = \""+ foreignKeyName+"\";");
+            ResultSet results = statement.executeQuery("SELECT Product.id, Product.name, Product.price, Product.amount,"
+                                                            + " ct.name AS categoryName"
+                                                            + " FROM Product LEFT JOIN Category ct ON ct.id = Product.category "
+                                                            + "WHERE categoryName = \""+ foreignKeyName+"\";");
             while (results.next()) {
                 int id = results.getInt("id");
                 String name = results.getString("name");
                 int price = results.getInt("price");
                 int amount = results.getInt("amount");
-                Category category = new Category(results.getString("Category.name"));
+                Category category = new Category(results.getString("categoryName"));
                 Product product = new Product(id, name, price, amount, category);
                 products.add(product);
             }

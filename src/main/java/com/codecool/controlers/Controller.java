@@ -20,17 +20,6 @@ import java.util.Map;
 public abstract class  Controller {
 
     private static Controller controller;
-
-    public static Controller initializeController() {
-        controller = new IncognitoController();
-        controller.restartActionKeyMap();
-        return controller;
-    }
-
-    public static Controller getController() {
-        return controller;
-    }
-
     Admin admin;
     Customer customer;
     View view;
@@ -46,20 +35,39 @@ public abstract class  Controller {
         view = new View();
         commandList = new ArrayList<>();
         actionMap = new HashMap<String,Runnable>();
-        this.actionMap.put("Show all products", () -> view.setObjectList(this.dao.getTable("%")));
+        this.actionMap.put("Show all products", () -> view.setObjectList(this.showAllProduct()));
         this.actionMap.put("Display products from category", () -> view.setObjectList(this.displayProductsFromCategory()));
         this.actionMap.put("Search product with given name", () -> view.setObjectList(this.displayProductsWithGivenName()));
+    }
 
+    private List<Displayable> showAllProduct(){
+        String[] headers = new String[]{"Id", "Name", "Price", "Ammount", "Category"};
+        this.view.setHeaders(headers);
+        return this.dao.getTable("%");
     }
 
     private List<Displayable> displayProductsWithGivenName(){
         String searchTerm = inputProvider.getValidateWord();
+        String[] headers = new String[]{"Id", "Name", "Price", "Ammount", "Category"};
+        this.view.setHeaders(headers);
         return  this.dao.getTable(searchTerm);
     }
 
     private List<Displayable> displayProductsFromCategory(){
         String category = inputProvider.getValidateWord();
+        String[] headers = new String[]{"Id", "Name", "Price", "Ammount", "Category"};
+        this.view.setHeaders(headers);
         return this.dao.getCategory(category);
+    }
+
+    public static Controller initializeController() {
+        controller = new IncognitoController();
+        controller.restartActionKeyMap();
+        return controller;
+    }
+
+    public static Controller getController() {
+        return controller;
     }
 
     public void getAction(){
@@ -104,17 +112,10 @@ public abstract class  Controller {
         this.customer = null;
         controller = new IncognitoController();
     }
+
     void quit() {
         controller = null;
     };
-
-    private String getInput(String[][] screen){
-
-        int choice = 0;
-        // get choice
-        // map choice into key
-        return "";
-    }
 
     void restartActionKeyMap() {
         commandList.clear();
@@ -124,5 +125,4 @@ public abstract class  Controller {
             commandId++;
         }
     }
-
 }
