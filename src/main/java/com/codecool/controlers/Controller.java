@@ -2,6 +2,7 @@ package com.codecool.controlers;
 
 import com.codecool.dao.Dao;
 import com.codecool.dao.ProductDao;
+import com.codecool.dao.UserDao;
 import com.codecool.user.Admin;
 import com.codecool.user.Customer;
 import com.codecool.user.User;
@@ -9,6 +10,7 @@ import com.codecool.views.View;
 import com.codecool.views.ViewShop;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -35,8 +37,6 @@ public abstract class  Controller {
 
     Controller(){
 
-        customer = new Customer();
-        admin = new Admin();
         dao = new ProductDao();
         view = new View();
         actionKeysMap = new HashMap<>();
@@ -63,7 +63,23 @@ public abstract class  Controller {
     }
 
     void signIn() {
+        String nick = ""; //getinput
+        String password = ""; //getInput
+        List<User> users = new UserDao().getTable(nick);
+        if (!(users.isEmpty())) {
+            return;
 
+        }
+        User user = users.get(0);
+        if (user.getPassword().equals(password)) {
+            if (user instanceof Customer) {
+                this.customer = (Customer) user;
+                controller = new CustomerController();
+            } else {
+                this.admin = (Admin) user;
+                controller = new AdminController();
+            }
+        }
         restartActionKeyMap();
     }
 
