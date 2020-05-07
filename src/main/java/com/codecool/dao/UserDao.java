@@ -1,5 +1,6 @@
 package com.codecool.dao;
 
+import com.codecool.modules.Displayable;
 import com.codecool.user.Admin;
 import com.codecool.user.Customer;
 import com.codecool.user.User;
@@ -12,11 +13,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UserDao extends  Dao {
+public class UserDao extends Dao {
 
     @Override
-    public List<User> getTable(String searchName) {
-        List<User> users = new ArrayList<>();
+    public List<Displayable> getTable(String searchName) {
+        List<Displayable> users = new ArrayList<>();
         connect();
 
         try {
@@ -44,8 +45,9 @@ public class UserDao extends  Dao {
         return users;
     }
 
-    public List<User> getCategory(String foreignKeyName){
-        List<User> users = new ArrayList<>();
+    @Override
+    public List<Displayable> getCategory(String foreignKeyName){
+        List<Displayable> users = new ArrayList<>();
         return users;
     }
 

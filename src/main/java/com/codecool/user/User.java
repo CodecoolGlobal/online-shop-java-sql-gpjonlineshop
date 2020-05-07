@@ -1,8 +1,10 @@
 package com.codecool.user;
 
+import com.codecool.modules.Displayable;
+
 import java.util.Date;
 
-public abstract class User {
+public abstract class User implements Displayable {
     private int id;
     private String name;
     private String surname;
@@ -10,14 +12,21 @@ public abstract class User {
     private String password;
     private Date createdAt;
 
-    protected User(int id, String name, String surname, String email, String password, Date hasJoined) {
+    protected User(int id, String name, String surname, String email, String password, Date createdAt) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
-        this.createdAt = hasJoined;
+        this.createdAt = createdAt;
     }
+
+    @Override
+    public String[] returnStringList(){
+        String[] userList = new String[]{Integer.toString(id), name, surname, email, createdAt.toString()};
+        return userList;
+    }
+
 
     public String getName() {
         return name;

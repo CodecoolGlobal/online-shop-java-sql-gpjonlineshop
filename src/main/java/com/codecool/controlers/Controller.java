@@ -3,12 +3,15 @@ package com.codecool.controlers;
 import com.codecool.dao.Dao;
 import com.codecool.dao.ProductDao;
 import com.codecool.dao.UserDao;
+import com.codecool.input.InputProvider;
+import com.codecool.modules.Command;
 import com.codecool.modules.Displayable;
 import com.codecool.user.Admin;
 import com.codecool.user.Customer;
 import com.codecool.user.User;
 import com.codecool.views.View;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,13 +35,14 @@ public abstract class  Controller {
     User user;
     Dao dao;
     HashMap<String, Runnable> actionMap;
-    HashMap<Integer, String> actionKeysMap;
+    List<Displayable> commandList;
+    InputProvider inputProvider;
 
     Controller(){
-
+        inputProvider = new InputProvider();
         dao = new ProductDao();
         view = new View();
-        actionKeysMap = new HashMap<>();
+        commandList = new ArrayList<>();
         actionMap = new HashMap<String,Runnable>();
         this.actionMap.put("Show all products", () -> view.setObjectList(this.dao.getTable("%")));
         this.actionMap.put("Display products from category", () -> view.setObjectList(this.displayProductsFromCategory()));
@@ -47,14 +51,12 @@ public abstract class  Controller {
     }
 
     private List<Displayable> displayProductsWithGivenName(){
-        String searchTerm = "%";
-        // get input into category
+        String searchTerm = inputProvider.getValidateWord();
         return  this.dao.getTable(searchTerm);
     }
 
     private List<Displayable> displayProductsFromCategory(){
-        String category = "";
-        // get input into category
+        String category = inputProvider.getValidateWord();
         return this.dao.getCategory(category);
     }
 
@@ -73,14 +75,14 @@ public abstract class  Controller {
     }
 
     void signIn() {
-        String nick = ""; //getinput
-        String password = ""; //getInput
-        List<User> users = new UserDao().getTable(nick);
+        String nick = inputProvider.getValidateWord();
+        String password = inputProvider.getValidateWord();
+        List<Displayable> users = new UserDao().getTable(nick);
         if (!(users.isEmpty())) {
             return;
 
         }
-        User user = users.get(0);
+        User user = (User)users.get(0);
         if (user.getPassword().equals(password)) {
             if (user instanceof Customer) {
                 this.customer = (Customer) user;
@@ -104,7 +106,7 @@ public abstract class  Controller {
 
     private String getInput(String[][] screen){
         this.view.setHeaders(new String[]{"Key:", "Action:"});
-        this.view.setObjectList(this.actionKeysMap);
+        this.view.setObjectList(this.commandList);
         this.view.displayContent();
         int choice = 0;
         // get choice
@@ -113,10 +115,11 @@ public abstract class  Controller {
     }
 
     void restartActionKeyMap() {
-        int n = 1;
+        commandList.clear();
+        int commandId = 0;
         for (String action : actionMap.keySet()) {
-            actionKeysMap.put(n, action);
-            n++;
+            commandList.add(new Command(commandId, action));
+            commandId++;
         }
     }
 

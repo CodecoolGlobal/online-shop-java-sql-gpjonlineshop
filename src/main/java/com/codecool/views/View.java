@@ -23,10 +23,6 @@ public class View {
         return objectList;
     }
 
-    public  void  setObjectList(HashMap<Integer, String> actionKeyMap){
-
-    }
-
     public void setObjectList(List<Displayable> objectList) {
         this.objectList = objectList;
     }

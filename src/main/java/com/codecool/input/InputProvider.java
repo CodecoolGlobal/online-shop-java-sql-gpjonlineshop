@@ -9,7 +9,7 @@ public class InputProvider {
 
     Scanner scanner = new Scanner(System.in);
 
-    InputProvider() {
+    public InputProvider() {
 
     }
 
