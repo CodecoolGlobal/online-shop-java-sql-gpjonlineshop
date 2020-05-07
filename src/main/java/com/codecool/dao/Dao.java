@@ -18,9 +18,9 @@ public abstract class Dao {
 
     public abstract List<Displayable> getTable(String searchName);
     public abstract List<Displayable> getCategory(String foreignKeyName);
-    public abstract void addElement();
-    public abstract void removeElement();
-    public abstract void editElementName();
+    public abstract void addElement(Object element);
+    public abstract void removeElement(String name);
+    public abstract void editElementName(String previousName, String newName);
 
     public void connect() {
         try {

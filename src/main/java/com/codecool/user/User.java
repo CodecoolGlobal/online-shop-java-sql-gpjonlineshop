@@ -27,6 +27,7 @@ public abstract class User implements Displayable {
         return userList;
     }
 
+    public int getId() { return id; }
 
     public String getName() {
         return name;

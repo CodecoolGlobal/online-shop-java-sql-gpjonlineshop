@@ -13,6 +13,18 @@ public class InputProvider {
 
     }
 
+    public int getPositiveNumber(String message) {
+        System.out.println(String.format("%s: ", message));
+        int number = -1;
+        while (number < 0) {
+            String input = scanner.nextLine();
+            if (properNumberProvided(input)) {
+                number = Integer.parseInt(input);
+            }
+        }
+        return number;
+    }
+
     public int getProperActionKey(int actionKeys, String message) {
         System.out.println(String.format("%s: ", message));
         int key = -1;
