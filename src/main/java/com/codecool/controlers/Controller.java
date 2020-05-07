@@ -12,10 +12,7 @@ import com.codecool.user.User;
 import com.codecool.views.View;
 
 import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class  Controller {
 
@@ -34,7 +31,7 @@ public abstract class  Controller {
         dao = new ProductDao();
         view = new View();
         commandList = new ArrayList<>();
-        actionMap = new HashMap<String,Runnable>();
+        actionMap = new LinkedHashMap<String,Runnable>();
         view.setQuerryList(this.dao.getCategory("Starships"));
         this.actionMap.put("Show all products", () -> view.setQuerryList(this.showAllProduct()));
         this.actionMap.put("Display products from category", () -> view.setQuerryList(this.displayProductsFromCategory()));
@@ -48,14 +45,14 @@ public abstract class  Controller {
     }
 
     private List<Displayable> displayProductsWithGivenName(){
-        String searchTerm = inputProvider.getValidateWord();
+        String searchTerm = inputProvider.getValidateWord("Enter name of product");
         String[] headers = new String[]{"Id", "Name", "Price", "Ammount", "Category"};
         this.view.setQuerryHeaders(headers);
         return  this.dao.getTable(searchTerm);
     }
 
     private List<Displayable> displayProductsFromCategory(){
-        String category = inputProvider.getValidateWord();
+        String category = inputProvider.getValidateWord("Enter name of category");
         String[] headers = new String[]{"Id", "Name", "Price", "Ammount", "Category"};
         this.view.setQuerryHeaders(headers);
         return this.dao.getCategory(category);
@@ -75,14 +72,14 @@ public abstract class  Controller {
         restartActionKeyMap();
         this.view.setCommaandList(this.commandList);
         this.view.displayContent();
-        int input = inputProvider.getProperActionKey(commandList.size());
+        int input = inputProvider.getProperActionKey(commandList.size(), "Enter number of action");
         actionMap.get(((Command)commandList.get(input)).getAction()).run();
         this.view.displayContent();
     }
 
     void signIn() {
-        String nick = inputProvider.getValidateWord();
-        String password = inputProvider.getValidateWord();
+        String nick = inputProvider.getValidateWord("Enter your name");
+        String password = inputProvider.getValidateWord("Enter your password");
         List<Displayable> users = new UserDao().getTable(nick);
         if ((users.isEmpty())) {
             return;

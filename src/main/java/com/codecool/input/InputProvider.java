@@ -13,19 +13,32 @@ public class InputProvider {
 
     }
 
-    public int getProperActionKey(int actionKeys) {
+    public int getProperActionKey(int actionKeys, String message) {
+        System.out.println(String.format("%s: ", message));
         int key = -1;
         while (!( (-1 < key) && (key < actionKeys))) {
             String input = scanner.nextLine();
-            if (input.chars().allMatch( Character::isDigit )) {
+            if (properNumberProvided(input)) {
                 key = Integer.parseInt(input);
             }
         }
         return key;
     }
 
-    public String getValidateWord() {
-        char[] input = scanner.nextLine().toCharArray();
+    private boolean properNumberProvided(String input) {
+        if (input.isEmpty()) {
+            return false;
+        }
+        return input.chars().allMatch( Character::isDigit );
+    }
+
+    public String getValidateWord(String message) {
+        System.out.println(String.format("%s: ", message));
+        String inputString = "";
+        while (inputString.isEmpty()) {
+            inputString = scanner.nextLine();
+        }
+        char[] input = inputString.toCharArray();
         StringBuilder builder = new StringBuilder();
         for (char letter : input) {
             if (Character.isAlphabetic(letter) || Character.isDigit(letter)) {

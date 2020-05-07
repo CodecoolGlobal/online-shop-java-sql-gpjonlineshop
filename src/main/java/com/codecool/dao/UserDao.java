@@ -32,8 +32,12 @@ public class UserDao extends Dao {
                 SimpleDateFormat originalFormat = new SimpleDateFormat("yyyyMMdd");
                 Date creationDate = originalFormat.parse(created_at.toString());
                 String type = results.getString("type");
-                User user = new Customer(id, name, surname, email, password, creationDate);
-                if (type == "admin") user = new Admin(id, name, surname, email, password, creationDate);
+                User user;
+                if (type.equals("admin")) {
+                    user = new Admin(id, name, surname, email, password, creationDate);
+                } else {
+                    user = new Customer(id, name, surname, email, password, creationDate);
+                }
                 users.add(user);
             }
             results.close();
@@ -51,4 +55,12 @@ public class UserDao extends Dao {
         return users;
     }
 
+    @Override
+    public void addElement() {}
+
+    @Override
+    public void removeElement() {}
+
+    @Override
+    public void editElementName() {}
 }
