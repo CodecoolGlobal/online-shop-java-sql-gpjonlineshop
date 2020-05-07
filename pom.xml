@@ -50,7 +50,7 @@
             </descriptorRefs>
             <archive>
               <manifest>
-                <mainClass>com.App</mainClass>
+                <mainClass>com.codecool.App</mainClass>
               </manifest>
             </archive>
           </configuration>
