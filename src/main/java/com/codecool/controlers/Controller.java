@@ -11,6 +11,7 @@ import com.codecool.user.Customer;
 import com.codecool.user.User;
 import com.codecool.views.View;
 
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +23,7 @@ public abstract class  Controller {
 
     public static Controller initializeController() {
         controller = new IncognitoController();
+        controller.restartActionKeyMap();
         return controller;
     }
 
