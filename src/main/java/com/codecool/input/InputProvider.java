@@ -13,8 +13,8 @@ public class InputProvider {
 
     }
 
-    public int getProperActionKey(int actionKeys) {
-        System.out.println("Provide number of action:");
+    public int getProperActionKey(int actionKeys, String message) {
+        System.out.println(String.format("%s: ", message));
         int key = -1;
         while (!( (-1 < key) && (key < actionKeys))) {
             String input = scanner.nextLine();

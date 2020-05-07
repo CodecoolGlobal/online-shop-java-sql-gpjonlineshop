@@ -72,7 +72,7 @@ public abstract class  Controller {
         restartActionKeyMap();
         this.view.setCommaandList(this.commandList);
         this.view.displayContent();
-        int input = inputProvider.getProperActionKey(commandList.size());
+        int input = inputProvider.getProperActionKey(commandList.size(), "Enter number of action");
         actionMap.get(((Command)commandList.get(input)).getAction()).run();
         this.view.displayContent();
     }
