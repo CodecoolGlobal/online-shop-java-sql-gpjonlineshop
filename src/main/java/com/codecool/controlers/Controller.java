@@ -71,6 +71,7 @@ public abstract class  Controller {
     }
 
     public void getAction(){
+        restartActionKeyMap();
         String[][] screen = new String[actionMap.size()][2];
         int i=0;
         for(Map.Entry<String, Runnable> entry : actionMap.entrySet()){
@@ -92,6 +93,7 @@ public abstract class  Controller {
         List<Displayable> users = new UserDao().getTable(nick);
         if ((users.isEmpty())) {
             return;
+
         }
         User user = (User)users.get(0);
         if (user.getPassword().equals(password)) {
@@ -103,7 +105,6 @@ public abstract class  Controller {
                 controller = new AdminController();
             }
         }
-        restartActionKeyMap();
     }
 
     void logOut() {
