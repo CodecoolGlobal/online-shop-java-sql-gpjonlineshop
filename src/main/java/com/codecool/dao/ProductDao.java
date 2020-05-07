@@ -25,7 +25,7 @@ public class ProductDao extends Dao {
                 String name = results.getString("name");
                 int price = results.getInt("price");
                 int amount = results.getInt("amount");
-                Category category = new Category(results.getString("categoryName")); // TODO: jak uzyskac dostep do kategorii??
+                Category category = new Category(results.getString("categoryName"));
                 Product product = new Product(id, name, price, amount, category);
                 products.add(product);
             }

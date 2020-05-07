@@ -20,13 +20,11 @@ public class CustomerController extends Controller {
     }
 
     public void addProductToBasket() {
-        System.out.println("Please enter products ID:");
         List<Displayable> productList = dao.getTable("%");
-        int selectedProductIndex = inputProvider.getProperActionKey(productList.size()+1);
+        int selectedProductIndex = inputProvider.getProperActionKey(productList.size()+1, "Please enter products ID:");
         if (selectedProductIndex == 0) return;
         Displayable selectedProduct = productList.get(selectedProductIndex-1);
-        System.out.println("Please enter ammount:");
-        int selectedAmmount = inputProvider.getProperActionKey(((Product)selectedProduct).getAmount()+1);
+        int selectedAmmount = inputProvider.getProperActionKey(((Product)selectedProduct).getAmount()+1, "Please enter ammount:");
         this.basket.addProduct(selectedProduct, selectedAmmount);
         this.view.setBasketList(this.basket.getProducts());
     }
