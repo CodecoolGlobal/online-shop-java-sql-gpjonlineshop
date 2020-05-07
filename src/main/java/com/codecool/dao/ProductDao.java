@@ -64,4 +64,21 @@ public class ProductDao extends Dao {
         }
         return products;
     }
+
+    @Override
+    public void addElement() {}
+
+    @Override
+    public void removeElement() {}
+
+    @Override
+    public void editElementName() {}
+
+    public void addCategory() {}
+
+    public void removeCategory() {}
+
+    public void editCategoryName() {}
+
+
 }
