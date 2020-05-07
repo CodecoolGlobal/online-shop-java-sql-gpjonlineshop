@@ -27,16 +27,13 @@ public abstract class  Controller {
 
 
     View view;
-    Customer customer;
-    Admin admin;
+    User user;
     Dao dao;
     HashMap<String, Runnable> actionMap;
     HashMap<Integer, String> actionKeysMap;
 
     Controller(){
 
-        customer = new Customer();
-        admin = new Admin();
         dao = new ProductDao();
         view = new View();
         actionKeysMap = new HashMap<>();

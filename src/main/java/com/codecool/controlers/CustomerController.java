@@ -1,5 +1,7 @@
 package com.codecool.controlers;
 
+import com.codecool.user.Customer;
+
 public class CustomerController extends Controller {
     CustomerController(){
         this.actionMap.put("Add product to basket", () -> this.customer.addProductToBasket());
