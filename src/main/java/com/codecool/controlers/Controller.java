@@ -35,28 +35,29 @@ public abstract class  Controller {
         view = new View();
         commandList = new ArrayList<>();
         actionMap = new HashMap<String,Runnable>();
-        this.actionMap.put("Show all products", () -> view.setObjectList(this.showAllProduct()));
-        this.actionMap.put("Display products from category", () -> view.setObjectList(this.displayProductsFromCategory()));
-        this.actionMap.put("Search product with given name", () -> view.setObjectList(this.displayProductsWithGivenName()));
+        view.setQuerryList(this.dao.getCategory("Starships"));
+        this.actionMap.put("Show all products", () -> view.setQuerryList(this.showAllProduct()));
+        this.actionMap.put("Display products from category", () -> view.setQuerryList(this.displayProductsFromCategory()));
+        this.actionMap.put("Search product with given name", () -> view.setQuerryList(this.displayProductsWithGivenName()));
     }
 
     private List<Displayable> showAllProduct(){
         String[] headers = new String[]{"Id", "Name", "Price", "Ammount", "Category"};
-        this.view.setHeaders(headers);
+        this.view.setQuerryHeaders(headers);
         return this.dao.getTable("%");
     }
 
     private List<Displayable> displayProductsWithGivenName(){
         String searchTerm = inputProvider.getValidateWord();
         String[] headers = new String[]{"Id", "Name", "Price", "Ammount", "Category"};
-        this.view.setHeaders(headers);
+        this.view.setQuerryHeaders(headers);
         return  this.dao.getTable(searchTerm);
     }
 
     private List<Displayable> displayProductsFromCategory(){
         String category = inputProvider.getValidateWord();
         String[] headers = new String[]{"Id", "Name", "Price", "Ammount", "Category"};
-        this.view.setHeaders(headers);
+        this.view.setQuerryHeaders(headers);
         return this.dao.getCategory(category);
     }
 
@@ -78,8 +79,7 @@ public abstract class  Controller {
             screen[i][1] = entry.getKey();
             i++;
         }
-        this.view.setHeaders(new String[]{"Key:", "Action:"});
-        this.view.setObjectList(this.commandList);
+        this.view.setCommaandList(this.commandList);
         this.view.displayContent();
         int input = inputProvider.getProperActionKey(commandList.size());
         actionMap.get(((Command)commandList.get(input)).getAction()).run();

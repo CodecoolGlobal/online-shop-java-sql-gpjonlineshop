@@ -4,41 +4,57 @@ import com.codecool.modules.Displayable;
 import com.codecool.modules.Product;
 import com.jakewharton.fliptables.FlipTable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 // pozniej bedzie abstrack  abstract //
 
 public class View {
-    private String[] headers;
-    private List<Displayable> objectList;
-
-    public void setHeaders(String[] headers) {
-        this.headers = headers;
-    }
-
-    public List<Displayable> getObjectList() {
-        return objectList;
-    }
-
-    public void setObjectList(List<Displayable> objectList) {
-        this.objectList = objectList;
-    }
+    private String[] commandHeaders;
+    private String[] querryHeaders;
+    private String[] basketHeaders;
+    private List<Displayable> querryList;
+    private List<Displayable> commaandList;
+    private List<Displayable> basketList;
 
     public View(){
-
+        this.commandHeaders = new String[]{"Key:", "Action:"};
+        this.basketHeaders = new String[]{"Id", "Name", "Price", "Ammount", "Category"};
+        this.querryHeaders = new String[]{"Id", "Name", "Price", "Ammount", "Category"};
+        this.basketList = new ArrayList<>();
+        this.querryList = new ArrayList<>();
+        this.commaandList = new ArrayList<>();
     }
 
-    public void displayContent(){
-        String[][] screen = new String[objectList.size()][headers.length];
-        for (int i=0; i<objectList.size(); i++){
-            String[] line = objectList.get(i).returnStringList();
+    public void setQuerryList(List<Displayable> querryList) {
+        this.querryList = querryList;
+    }
+
+    public void setQuerryHeaders(String[] querryHeaders) {
+        this.querryHeaders = querryHeaders;
+    }
+
+    public void setCommaandList(List<Displayable> commaandList) {
+        this.commaandList = commaandList;
+    }
+
+    public void displayContent() {
+        String[] superHeader = {"Actions", "Output", "Basket"};
+        String[] contentContainers = {displayTertion(commandHeaders, commaandList) ,displayTertion(querryHeaders, querryList) , displayTertion(basketHeaders, basketList)};
+    }
+
+    public String displayTertion(String[] headers, List<Displayable> rowList){
+        if (rowList.isEmpty()) return "";
+        String[][] screen = new String[rowList.size()][headers.length];
+        for (int i=0; i<rowList.size(); i++){
+            String[] line = rowList.get(i).returnStringList();
             for (int j=0; j<headers.length; j++) {
                 if (line[j]!=null) screen[i][j] = line[j];
                 else screen[i][j] = "null";
             }
         }
-
-        System.out.println(FlipTable.of(this.headers, screen));
+        String outputString = FlipTable.of(headers, screen);
+        return outputString;
     }
 }
