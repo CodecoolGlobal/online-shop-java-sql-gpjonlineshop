@@ -39,5 +39,4 @@ public class View {
         }
         System.out.println(FlipTable.of(this.headers, screen));
     }
-
 }

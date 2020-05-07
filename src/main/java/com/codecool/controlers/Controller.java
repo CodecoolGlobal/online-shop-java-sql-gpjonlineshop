@@ -92,7 +92,6 @@ public abstract class  Controller {
         List<Displayable> users = new UserDao().getTable(nick);
         if ((users.isEmpty())) {
             return;
-
         }
         User user = (User)users.get(0);
         if (user.getPassword().equals(password)) {
