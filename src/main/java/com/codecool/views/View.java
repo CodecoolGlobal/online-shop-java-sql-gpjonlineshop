@@ -35,14 +35,6 @@ public class View {
         for (int i=0; i<objectList.size(); i++){
             screen[i] = objectList.get(i).returnStringList();
         }
-        for (String header : headers) {
-            System.out.println(header);
-        }
-        for (String[] scr : screen) {
-            for (String stringscreen : scr) {
-                System.out.println(stringscreen);
-            }
-        }
         System.out.println(FlipTable.of(this.headers, screen));
     }
 
