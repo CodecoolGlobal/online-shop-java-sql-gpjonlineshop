@@ -15,9 +15,6 @@ public class Category {
     private ArrayList<Product> products;
 
     public Category(String name) {
-
+        this.name = name;
     }
-
-
-
 }

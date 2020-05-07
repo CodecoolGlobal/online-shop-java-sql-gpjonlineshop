@@ -1,14 +1,38 @@
 package com.codecool.controlers;
 
+import com.codecool.modules.Basket;
+import com.codecool.modules.Displayable;
+import com.codecool.modules.Product;
 import com.codecool.user.Customer;
 
+import java.util.List;
+
 public class CustomerController extends Controller {
+    private Basket basket;
+
     CustomerController(){
-        this.actionMap.put("Add product to basket", () -> this.customer.addProductToBasket());
-        this.actionMap.put("Edit product quantity", () -> this.customer.editProductQuantity());
-        // this.actionMap.put("See whole basket", () -> this.view.showWholeBasket(this.customer.getBasket()));
-        this.actionMap.put("Place an order", () -> this.customer.placeAnOrder());
+        this.basket = new Basket();
+        this.actionMap.put("Add product to basket", () -> this.addProductToBasket());
+        this.actionMap.put("Edit product quantity", () -> this.editProductQuantity());
+        this.actionMap.put("Place an order", () -> this.placeAnOrder());
         // this.actionMap.put("Check availability of product", this.dao.checkAvailabilityOfProduct());
         this.actionMap.put("Log out", this::logOut);
     }
+
+    public void addProductToBasket() {
+        System.out.println("Please enter products ID:");
+        List<Displayable> productList = dao.getTable("%");
+        int selectedProductIndex = inputProvider.getProperActionKey(productList.size()+1);
+        if (selectedProductIndex == 0) return;
+        Displayable selectedProduct = productList.get(selectedProductIndex-1);
+        System.out.println("Please enter ammount:");
+        int selectedAmmount = inputProvider.getProperActionKey(((Product)selectedProduct).getAmount()+1);
+        this.basket.addProduct(selectedProduct, selectedAmmount);
+        this.view.setBasketList(this.basket.getProducts());
+    }
+
+    public void editProductQuantity() {}
+    public void deleteProductFromBasket() {}
+    public void placeAnOrder() {}
+
 }

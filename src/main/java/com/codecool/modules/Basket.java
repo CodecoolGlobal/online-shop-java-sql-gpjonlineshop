@@ -3,23 +3,30 @@ package com.codecool.modules;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Basket {
     private int id;
     private Iterator<Product> iterator;
-    private List<Product> products;
+    private List<Displayable> products;
 
     public Basket() {
         this.products = new ArrayList<>();
         this.iterator = new ProductIterator();
     }
 
+    public List<Displayable> getProducts() { return products; }
     public Iterator<Product> getIterator() {
         return iterator;
     }
 
-    public void addProduct(Product product, int amount) {
-
+    public void addProduct(Displayable product, int amount) {
+        ((Product)product).setAmount(amount);
+        if (products.isEmpty() ) {this.products.add(product); return;};
+        for(Displayable displayable: this.products){
+            if (((Product)displayable).getName().equals(((Product)product).getName())) return;
+        }
+        this.products.add(product);
     }
 
     public void deleteProduct(Product product) {
@@ -37,7 +44,7 @@ public class Basket {
         @Override
         public Product next() {
             if (this.hasNext()) {
-                return products.get(index++);
+                return (Product)products.get(index++);
             }
             return null;
         }

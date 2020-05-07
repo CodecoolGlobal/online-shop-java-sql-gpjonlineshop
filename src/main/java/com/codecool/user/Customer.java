@@ -14,15 +14,7 @@ public class Customer extends User {
         super(id, name, surname, email, password, hasJoined);
     };
 
-//    public Customer(int id, String name, String surname, String email, String password,
-//                    Date createdAt) {
-//        super(id, name, surname, email, password, createdAt);
-//    }
 
-    public void addProductToBasket() {}
-    public void editProductQuantity() {}
-    public void deleteProductFromBasket() {}
-    public void placeAnOrder() {}
 
 
 }

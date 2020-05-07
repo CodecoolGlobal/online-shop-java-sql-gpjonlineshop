@@ -25,4 +25,15 @@ public class Product implements Displayable {
         return productList;
     }
 
+    public int getAmount() {
+        return this.amount;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 }

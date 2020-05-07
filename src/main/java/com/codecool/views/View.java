@@ -30,14 +30,13 @@ public class View {
     public void setQuerryList(List<Displayable> querryList) {
         this.querryList = querryList;
     }
-
     public void setQuerryHeaders(String[] querryHeaders) {
         this.querryHeaders = querryHeaders;
     }
-
     public void setCommaandList(List<Displayable> commaandList) {
         this.commaandList = commaandList;
     }
+    public void setBasketList(List<Displayable> basketList) { this.basketList = basketList; }
 
     public void displayContent() {
         String[] superHeader = {"Actions", "Output", "Basket"};
