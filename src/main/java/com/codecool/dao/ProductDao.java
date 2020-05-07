@@ -66,19 +66,19 @@ public class ProductDao extends Dao {
     }
 
     @Override
-    public void addElement() {}
+    public void addElement(Object element) {
+        Product product = (Product) element; // ToDo implement
+    }
 
     @Override
-    public void removeElement() {}
+    public void removeElement(String name) {
+        // ToDo implement
+    }
 
     @Override
-    public void editElementName() {}
-
-    public void addCategory() {}
-
-    public void removeCategory() {}
-
-    public void editCategoryName() {}
+    public void editElementName(String previousName, String newName) {
+        // ToDo implement
+    }
 
 
 }

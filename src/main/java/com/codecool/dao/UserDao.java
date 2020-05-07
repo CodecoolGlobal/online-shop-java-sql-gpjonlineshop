@@ -1,6 +1,7 @@
 package com.codecool.dao;
 
 import com.codecool.modules.Displayable;
+import com.codecool.modules.Product;
 import com.codecool.user.Admin;
 import com.codecool.user.Customer;
 import com.codecool.user.User;
@@ -56,11 +57,17 @@ public class UserDao extends Dao {
     }
 
     @Override
-    public void addElement() {}
+    public void addElement(Object element) {
+        User product = (User) element; // ToDo implement
+    }
 
     @Override
-    public void removeElement() {}
+    public void removeElement(String name) {
+        // ToDo implement
+    }
 
     @Override
-    public void editElementName() {}
+    public void editElementName(String previousName, String newName) {
+        // ToDo implement
+    }
 }

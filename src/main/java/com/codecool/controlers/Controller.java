@@ -103,6 +103,38 @@ public abstract class  Controller {
         controller = new IncognitoController();
     }
 
+    User getCustomerToAdd() {
+        List<User> allUsers = new ArrayList<>();
+        new UserDao().getTable("%").forEach(u -> allUsers.add((User) u));
+        List<Integer> allIds = getAllIds(allUsers);
+        List<String> allNicks = getAllNicks(allUsers);
+        int id;
+        do {
+            id = inputProvider.getPositiveNumber("Enter id");
+        } while(allIds.contains(id));
+        String name;
+        do {
+            name = inputProvider.getValidateWord("Enter name");
+        } while (allNicks.contains(name));
+        String surname = inputProvider.getValidateWord("Enter surname");
+        String email = inputProvider.getValidateWord("Enter email");
+        String password = inputProvider.getValidateWord("Enter password");
+        Date createAt = new Date(System.currentTimeMillis());
+        return new Customer(id, name, surname, email, password, createAt);
+    }
+
+    private List<Integer> getAllIds(List<User> allUsers) {
+        List <Integer> allIds = new ArrayList<>();
+        allUsers.forEach(u -> allIds.add(u.getId()));
+        return allIds;
+    }
+
+    private List<String> getAllNicks(List<User> allUsers) {
+        List <String> allNicks = new ArrayList<>();
+        allUsers.forEach(u -> allNicks.add(u.getName()));
+        return allNicks;
+    }
+
     void quit() {
         controller = null;
     };
