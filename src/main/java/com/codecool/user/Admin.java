@@ -1,21 +1,22 @@
 package com.codecool.user;
 
+import com.codecool.dao.Dao;
+import com.codecool.dao.ProductDao;
+import com.codecool.dao.UserDao;
+
 import java.util.Date;
 
 public class Admin extends User {
 
-    public Admin(int id, String name, String surname, String email, String password, Date hasJoined) {
-        super(id, name, surname, email, password, hasJoined);
+    private UserDao userDao = new UserDao();
+    private ProductDao productDao = new ProductDao();
+
+    public Admin(int id, String name, String surname, String email, String password, Date createdAt) {
+        super(id, name, surname, email, password, createdAt);
     };
-/*
-    public Admin(int id, String name, String surname, String email, String password, Date hasJoined) {
-        super(id, name, surname, email, password, hasJoined);
-    }
 
- */
-
-    //wszytskie polaczenie z db i tam operacja
     public void addUser() {
+
     }
 
     public void deleteUser() {
