@@ -34,9 +34,11 @@ public class View {
         for (int i=0; i<objectList.size(); i++){
             String[] line = objectList.get(i).returnStringList();
             for (int j=0; j<headers.length; j++) {
-                screen[i][j] = line[j];
+                if (line[j]!=null) screen[i][j] = line[j];
+                else screen[i][j] = "null";
             }
         }
+
         System.out.println(FlipTable.of(this.headers, screen));
     }
 }
