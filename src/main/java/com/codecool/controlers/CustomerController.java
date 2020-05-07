@@ -13,7 +13,7 @@ public class CustomerController extends Controller {
     CustomerController(){
         this.basket = new Basket();
         this.actionMap.put("Add product to basket", () -> this.addProductToBasket());
-        this.actionMap.put("Edit product quantity", () -> this.editProductQuantity());
+        this.actionMap.put("Edit product quantity", () -> this.editQuantityInBasket());
         this.actionMap.put("Place an order", () -> this.placeAnOrder());
         // this.actionMap.put("Check availability of product", this.dao.checkAvailabilityOfProduct());
         this.actionMap.put("Log out", this::logOut);
@@ -29,7 +29,15 @@ public class CustomerController extends Controller {
         this.view.setBasketList(this.basket.getProducts());
     }
 
-    public void editProductQuantity() {}
+    public void editQuantityInBasket(){
+        List<Displayable> productList = dao.getTable("%");
+        int selectedProductIndex = inputProvider.getProperActionKey(productList.size()+1, "Please enter products ID:");
+        if (selectedProductIndex == 0) return;
+        Displayable selectedProduct = productList.get(selectedProductIndex-1);
+        int selectedAmmount = inputProvider.getProperActionKey(((Product)selectedProduct).getAmount()+1, "Please enter ammount:");
+        this.basket.changeProduct(selectedProduct, selectedAmmount);
+        this.view.setBasketList(this.basket.getProducts());
+    }
     public void deleteProductFromBasket() {}
     public void placeAnOrder() {}
 

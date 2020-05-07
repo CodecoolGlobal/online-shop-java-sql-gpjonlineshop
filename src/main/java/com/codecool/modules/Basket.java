@@ -29,6 +29,14 @@ public class Basket {
         this.products.add(product);
     }
 
+    public void changeProduct(Displayable selectedProduct, int selectedAmmount){
+        for(Displayable displayable: this.products){
+            if (((Product)displayable).getName().equals(((Product)selectedProduct).getName())){
+                ((Product)displayable).setAmount(selectedAmmount);
+            }
+        }
+    }
+
     public void deleteProduct(Product product) {
 
     }
