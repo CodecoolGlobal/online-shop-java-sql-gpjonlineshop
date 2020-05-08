@@ -73,7 +73,7 @@ public class ProductDao extends Dao {
         connect();
         try {
             statement.executeUpdate("INSERT INTO Product (name, price, amount, category) VALUES(\'" + product.getName() + "\', \'"
-                    + product.getPrice() + "\', \'" + product.getAmount() + "\', \'" + product.getCategory().getName() + "\');");
+                    + product.getPrice() + "\', \'" + product.getAmount() + "\', \'" + product.getCategory().getId() + "\');");
             statement.close();
             connection.close();
         } catch (SQLException throwables) {
