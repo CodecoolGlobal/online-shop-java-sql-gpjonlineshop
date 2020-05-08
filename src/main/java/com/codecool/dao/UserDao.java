@@ -81,6 +81,13 @@ public class UserDao extends Dao {
 
     @Override
     public void editElementName(String previousName, String newName) {
-        // ToDo implement
+        connect();
+        try {
+            statement.executeUpdate("Update User SET name = \'" + newName + "\' WHERE name = \'" + previousName + "\';");
+            statement.close();
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

@@ -25,6 +25,14 @@ public class Product implements Displayable {
         return productList;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
     public int getAmount() {
         return this.amount;
     }

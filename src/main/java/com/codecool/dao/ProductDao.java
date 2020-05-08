@@ -5,6 +5,8 @@ import com.codecool.modules.Displayable;
 import com.codecool.modules.Product;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,17 +69,40 @@ public class ProductDao extends Dao {
 
     @Override
     public void addElement(Object element) {
-        Product product = (Product) element; // ToDo implement
+        Product product = (Product) element;
+        connect();
+        try {
+            statement.executeUpdate("INSERT INTO Product (name, price, amount, category) VALUES(\'" + product.getName() + "\', \'"
+                    + product.getPrice() + "\', \'" + product.getAmount() + "\', \'" + product.getCategory().getName() + "\');");
+            statement.close();
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
     public void removeElement(String name) {
-        // ToDo implement
+        connect();
+        try {
+            statement.executeUpdate("DELETE FROM Product WHERE name =\'" + name + "\';");
+            statement.close();
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
     public void editElementName(String previousName, String newName) {
-        // ToDo implement
+        connect();
+        try {
+            statement.executeUpdate("Update Product SET name = \'" + newName + "\' WHERE name = \'" + previousName + "\';");
+            statement.close();
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
 
