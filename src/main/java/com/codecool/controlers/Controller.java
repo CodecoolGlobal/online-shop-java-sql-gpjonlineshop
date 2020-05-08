@@ -74,7 +74,6 @@ public abstract class  Controller {
         this.view.displayContent();
         int input = inputProvider.getProperActionKey(commandList.size(), "Enter number of action");
         actionMap.get(((Command)commandList.get(input)).getAction()).run();
-        this.view.displayContent();
     }
 
     void signIn() {

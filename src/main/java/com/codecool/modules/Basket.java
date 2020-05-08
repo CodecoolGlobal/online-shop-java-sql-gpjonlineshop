@@ -37,6 +37,10 @@ public class Basket {
         }
     }
 
+    public  void removeProduct(Displayable product){
+        this.products.remove(product);
+    }
+
     public void deleteProduct(Product product) {
 
     }
