@@ -46,6 +46,8 @@ public class CustomerController extends Controller {
         this.basket.removeProduct(productList.get(selectedProductIndex-1));
         this.view.setBasketList(this.basket.getProducts());
     }
-    public void placeAnOrder() {}
+    public void placeAnOrder() {
+
+    }
 
 }

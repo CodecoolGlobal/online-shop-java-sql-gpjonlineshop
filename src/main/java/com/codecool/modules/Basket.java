@@ -38,13 +38,11 @@ public class Basket {
     }
 
     public  void removeProduct(Displayable product){
-        this.products.remove(product);
+        for (int i = 0; i<products.size(); i++){
+            if (((Product)products.get(i)).getName().equals(((Product)product).getName())) products.remove(i);
+        }
     }
 
-    public void deleteProduct(Product product) {
-
-    }
-    
     private class ProductIterator implements Iterator<Product> {
         int index;
 
