@@ -20,7 +20,6 @@ public class Order {
 
     }
 
-    // OrderStatus sprawdzic status i jesli zaplacone to timestamp
     public void processOrder(){
         OrderDao dao = new OrderDao();
         try {

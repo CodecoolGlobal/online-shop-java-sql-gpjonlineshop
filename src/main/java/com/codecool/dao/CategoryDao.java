@@ -2,8 +2,6 @@ package com.codecool.dao;
 
 import com.codecool.modules.Category;
 import com.codecool.modules.Displayable;
-import com.codecool.modules.Product;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

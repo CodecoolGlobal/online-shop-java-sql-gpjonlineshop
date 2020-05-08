@@ -1,14 +1,9 @@
 package com.codecool.views;
 
 import com.codecool.modules.Displayable;
-import com.codecool.modules.Product;
 import com.jakewharton.fliptables.FlipTable;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-// pozniej bedzie abstrack  abstract //
 
 public class View {
     private String[] commandHeaders;

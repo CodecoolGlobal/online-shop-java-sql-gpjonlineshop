@@ -3,7 +3,6 @@ package com.codecool.dao;
 import com.codecool.modules.Displayable;
 import com.codecool.modules.Order;
 import com.codecool.modules.Product;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;

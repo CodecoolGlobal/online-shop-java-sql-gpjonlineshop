@@ -1,8 +1,6 @@
 package com.codecool.dao;
 
 import com.codecool.modules.Displayable;
-import com.codecool.modules.Product;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

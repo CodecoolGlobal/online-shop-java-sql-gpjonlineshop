@@ -11,8 +11,6 @@ import com.codecool.user.Admin;
 import com.codecool.user.Customer;
 import com.codecool.user.User;
 import com.codecool.views.View;
-
-import java.sql.PreparedStatement;
 import java.util.*;
 
 public abstract class  Controller {
@@ -21,7 +19,6 @@ public abstract class  Controller {
     Admin admin;
     Customer customer;
     View view;
-    User user;
     Dao dao;
     HashMap<String, Runnable> actionMap;
     List<Displayable> commandList;

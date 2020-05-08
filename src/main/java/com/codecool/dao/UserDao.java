@@ -1,11 +1,9 @@
 package com.codecool.dao;
 
 import com.codecool.modules.Displayable;
-import com.codecool.modules.Product;
 import com.codecool.user.Admin;
 import com.codecool.user.Customer;
 import com.codecool.user.User;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;

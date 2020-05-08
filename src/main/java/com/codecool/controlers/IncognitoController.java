@@ -1,7 +1,6 @@
 package com.codecool.controlers;
 
 import com.codecool.dao.UserDao;
-
 import java.sql.SQLException;
 
 public class IncognitoController extends Controller {

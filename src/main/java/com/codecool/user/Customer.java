@@ -12,7 +12,7 @@ public class Customer extends User {
 
     public Customer(int id, String name, String surname, String email, String password, Date createAt) {
         super(id, name, surname, email, password, createAt);
-    };
+    }
 
 
 
