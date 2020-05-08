@@ -1,5 +1,6 @@
 package com.codecool.controlers;
 
+import com.codecool.dao.CategoryDao;
 import com.codecool.dao.Dao;
 import com.codecool.dao.ProductDao;
 import com.codecool.dao.UserDao;
@@ -33,9 +34,16 @@ public abstract class  Controller {
         commandList = new ArrayList<>();
         actionMap = new LinkedHashMap<String,Runnable>();
         view.setQuerryList(this.dao.getCategory("Starships"));
+        this.actionMap.put("Dislay all categories", () -> view.setQuerryList(this.showAllCategories()));
         this.actionMap.put("Show all products", () -> view.setQuerryList(this.showAllProduct()));
         this.actionMap.put("Display products from category", () -> view.setQuerryList(this.displayProductsFromCategory()));
         this.actionMap.put("Search product with given name", () -> view.setQuerryList(this.displayProductsWithGivenName()));
+    }
+
+    private List<Displayable> showAllCategories() {
+        String[] headers = new String[]{"Id", "Name"};
+        this.view.setQuerryHeaders(headers);
+        return new CategoryDao().getTable("%");
     }
 
     private List<Displayable> showAllProduct(){

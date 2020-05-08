@@ -30,8 +30,8 @@ public class AdminController extends Controller {
     private void addMethodsToHandleCategory() {
         this.actionMap.put("Add category", () -> categoryDao.addElement(getCategoryToAdd()));
         this.actionMap.put("Delete category", () -> categoryDao.removeElement(getNameOfElement("category")));
-        this.actionMap.put("Edit name of category", () -> categoryDao.editElementName(
-                getNameOfElement("previous category"), getNameOfElement("new category")));
+        //this.actionMap.put("Edit name of category", () -> categoryDao.editElementName(
+        //      getNameOfElement("previous category"), getNameOfElement("new category")));
     }
 
     private void addMethodsToHandleProduct() {
@@ -72,7 +72,14 @@ public class AdminController extends Controller {
         String name = inputProvider.getValidateWord("Enter name of product");
         int price = inputProvider.getPositiveNumber("Enter price of product");
         int amount = inputProvider.getPositiveNumber("Enter amount of product");
-        Category category = new Category(inputProvider.getValidateWord("Enter category name"));
+        List<Displayable> categories = categoryDao.getTable("Vacum Cleaners");
+        int categoryId = ((Category) categories.get(0)).getId();
+        String categoryName = inputProvider.getValidateWord("Enter category name");
+        categories = categoryDao.getTable(categoryName);
+        if (categories.size() != 0) {
+            categoryId = ((Category) categories.get(0)).getId();  // default category
+        }
+        Category category = new Category(categoryName, categoryId);
         return new Product(id, name, price, amount, category);
     }
 
