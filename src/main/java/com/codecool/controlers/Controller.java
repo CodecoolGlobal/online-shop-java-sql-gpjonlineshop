@@ -103,14 +103,7 @@ public abstract class  Controller {
     }
 
     User getCustomerToAdd() {
-        List<User> allUsers = new ArrayList<>();
-        new UserDao().getTable("%").forEach(u -> allUsers.add((User) u));
-        List<Integer> allIds = getAllIds(allUsers);
-        List<String> allNicks = getAllNicks(allUsers);
-        int id;
-        do {
-            id = inputProvider.getPositiveNumber("Enter id");
-        } while(allIds.contains(id));
+        List<String> allNicks = getAllNicks();
         String name;
         do {
             name = inputProvider.getValidateWord("Enter name");
@@ -119,18 +112,13 @@ public abstract class  Controller {
         String email = inputProvider.getValidateWord("Enter email");
         String password = inputProvider.getValidateWord("Enter password");
         Date createAt = new Date(System.currentTimeMillis());
+        int id = 1;
         return new Customer(id, name, surname, email, password, createAt);
     }
 
-    private List<Integer> getAllIds(List<User> allUsers) {
-        List <Integer> allIds = new ArrayList<>();
-        allUsers.forEach(u -> allIds.add(u.getId()));
-        return allIds;
-    }
-
-    private List<String> getAllNicks(List<User> allUsers) {
+    private List<String> getAllNicks() {
         List <String> allNicks = new ArrayList<>();
-        allUsers.forEach(u -> allNicks.add(u.getName()));
+        new UserDao().getTable("%").forEach(u -> allNicks.add(((User) u).getName()));
         return allNicks;
     }
 
