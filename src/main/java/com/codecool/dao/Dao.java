@@ -18,8 +18,8 @@ public abstract class Dao {
 
     public abstract List<Displayable> getTable(String searchName);
     public abstract List<Displayable> getCategory(String foreignKeyName);
-    public abstract void addElement(Object element);
-    public abstract void removeElement(String name);
+    public abstract void addElement(Object element) throws SQLException;
+    public abstract void removeElement(String name) throws SQLException;
     public abstract void editElementName(String previousName, String newName);
 
     public void connect() {

@@ -8,6 +8,7 @@ import com.codecool.user.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,13 +58,25 @@ public class UserDao extends Dao {
     }
 
     @Override
-    public void addElement(Object element) {
-        User product = (User) element; // ToDo implement
+    public void addElement(Object element) throws SQLException {
+        User user = (User) element;
+        connect();
+        String pattern = "yyyyMMdd";
+        DateFormat df = new SimpleDateFormat(pattern);
+        String dateToSql = df.format(user.getCreatedAt());
+        statement.executeUpdate("INSERT INTO User (name, surname, created_at, email, password) VALUES(\'" + user.getName() + "\', \'"
+                                + user.getSurname() + "\', \'" + dateToSql + "\', \'" + user.getEmail() + "\', \'" + user.getPassword()
+                                + "\');");
+        statement.close();
+        connection.close();
     }
 
     @Override
-    public void removeElement(String name) {
-        // ToDo implement
+    public void removeElement(String name) throws SQLException {
+        connect();
+        statement.executeUpdate("DELETE FROM User WHERE name =\'" + name + "\';");
+        statement.close();
+        connection.close();
     }
 
     @Override

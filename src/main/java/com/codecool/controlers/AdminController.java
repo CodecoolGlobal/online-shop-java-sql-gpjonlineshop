@@ -8,6 +8,7 @@ import com.codecool.modules.Product;
 import com.codecool.user.Customer;
 import com.codecool.user.User;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -23,8 +24,20 @@ public class AdminController extends Controller {
         this.actionMap.put("Delete product", () -> productDao.removeElement(getNameOfElement("product")));
         this.actionMap.put("Edit name of product", () -> productDao.editElementName(
                 getNameOfElement("previous product"), getNameOfElement("new product")));
-        this.actionMap.put("Add user", () -> userDao.addElement(getCustomerToAdd()));
-        this.actionMap.put("Delete user", () -> userDao.removeElement(getNameOfElement("user")));
+        this.actionMap.put("Add user", () -> {
+            try {
+                userDao.addElement(getCustomerToAdd());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+        this.actionMap.put("Delete user", () -> {
+            try {
+                userDao.removeElement(getNameOfElement("user"));
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
         this.actionMap.put("Edit name of user", () -> userDao.editElementName(
                 getNameOfElement("previous user"), getNameOfElement("new user")));
         this.actionMap.put("Add category", () -> categoryDao.addElement(getCategoryToAdd()));
