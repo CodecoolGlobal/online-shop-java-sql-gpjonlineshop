@@ -21,7 +21,7 @@ public class ProductDao extends Dao {
             ResultSet results = statement.executeQuery("SELECT Product.id, Product.name, Product.price, Product.amount," +
                                                         " ct.name AS categoryName"
                                                         + "   FROM Product LEFT JOIN Category ct ON ct.id = Product.category"
-                                                        +  " WHERE Product.name LIKE \"" + searchName + "\";");
+                                                        +  " WHERE Product.name LIKE \"%" + searchName + "%\";");
             while (results.next()) {
                 int id = results.getInt("id");
                 String name = results.getString("name");
