@@ -1,7 +1,7 @@
 package com.codecool.dao;
 
-import com.codecool.modules.Category;
-import com.codecool.modules.Displayable;
+import com.codecool.models.Category;
+import com.codecool.models.Displayable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

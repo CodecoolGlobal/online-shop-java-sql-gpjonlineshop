@@ -1,7 +1,9 @@
 package com.codecool.user;
 
-import com.codecool.modules.Basket;
-import com.codecool.modules.Order;
+import com.codecool.controlers.Controller;
+import com.codecool.controlers.CustomerController;
+import com.codecool.models.Basket;
+import com.codecool.models.Order;
 
 import java.util.Date;
 import java.util.List;
@@ -14,7 +16,7 @@ public class Customer extends User {
         super(id, name, surname, email, password, createAt);
     }
 
-
-
-
+    public Controller getController() {
+        return new CustomerController();
+    }
 }

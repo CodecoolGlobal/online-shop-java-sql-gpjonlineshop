@@ -3,9 +3,9 @@ package com.codecool.controlers;
 import com.codecool.dao.CategoryDao;
 import com.codecool.dao.ProductDao;
 import com.codecool.dao.UserDao;
-import com.codecool.modules.Category;
-import com.codecool.modules.Displayable;
-import com.codecool.modules.Product;
+import com.codecool.models.Category;
+import com.codecool.models.Displayable;
+import com.codecool.models.Product;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class AdminController extends Controller {
     UserDao userDao = new UserDao();
     CategoryDao categoryDao = new CategoryDao();
 
-    AdminController() {
+    public AdminController() {
         addMethodsToHandleProduct();
         addMethodsToHandleUser();
         addMethodsToHandleCategory();

@@ -1,6 +1,8 @@
 package com.codecool.user;
 
-import com.codecool.modules.Displayable;
+import com.codecool.controlers.AdminController;
+import com.codecool.controlers.Controller;
+import com.codecool.models.Displayable;
 import java.util.Date;
 
 public abstract class User implements Displayable {
@@ -52,4 +54,7 @@ public abstract class User implements Displayable {
         return createdAt;
     }
 
+    public Controller getController() {
+        return null;
+    }
 }

@@ -1,6 +1,6 @@
 package com.codecool.dao;
 
-import com.codecool.modules.Displayable;
+import com.codecool.models.Displayable;
 import com.codecool.user.Admin;
 import com.codecool.user.Customer;
 import com.codecool.user.User;

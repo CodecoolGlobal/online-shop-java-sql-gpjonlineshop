@@ -1,6 +1,4 @@
-package com.codecool.modules;
-
-import java.util.ArrayList;
+package com.codecool.models;
 
 public class Category implements Displayable {
 

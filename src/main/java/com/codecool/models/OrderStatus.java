@@ -1,4 +1,4 @@
-package com.codecool.modules;
+package com.codecool.models;
 
 public enum OrderStatus {
 }

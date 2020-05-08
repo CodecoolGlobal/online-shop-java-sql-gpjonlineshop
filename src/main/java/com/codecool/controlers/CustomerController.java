@@ -1,15 +1,15 @@
 package com.codecool.controlers;
 
-import com.codecool.modules.Basket;
-import com.codecool.modules.Displayable;
-import com.codecool.modules.Order;
-import com.codecool.modules.Product;
+import com.codecool.models.Basket;
+import com.codecool.models.Displayable;
+import com.codecool.models.Order;
+import com.codecool.models.Product;
 import java.util.List;
 
 public class CustomerController extends Controller {
     private Basket basket;
 
-    CustomerController(){
+    public CustomerController(){
         this.basket = new Basket();
         this.actionMap.put("Add product to basket", this::addProductToBasket);
         this.actionMap.put("Edit product quantity", this::editQuantityInBasket);

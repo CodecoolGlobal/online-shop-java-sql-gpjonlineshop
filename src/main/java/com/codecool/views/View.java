@@ -1,6 +1,6 @@
 package com.codecool.views;
 
-import com.codecool.modules.Displayable;
+import com.codecool.models.Displayable;
 import com.jakewharton.fliptables.FlipTable;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +42,7 @@ public class View {
     public String displayTertion(String[] headers, List<Displayable> rowList){
         if (rowList.isEmpty()) return "";
         String[][] screen = new String[rowList.size()][headers.length];
+
         for (int i=0; i<rowList.size(); i++){
             String[] line = rowList.get(i).returnStringList();
             for (int j=0; j<headers.length; j++) {
@@ -49,7 +50,6 @@ public class View {
                 else screen[i][j] = "null";
             }
         }
-        String outputString = FlipTable.of(headers, screen);
-        return outputString;
+        return FlipTable.of(headers, screen);
     }
 }

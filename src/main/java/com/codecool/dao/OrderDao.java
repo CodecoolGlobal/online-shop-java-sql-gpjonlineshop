@@ -1,8 +1,8 @@
 package com.codecool.dao;
 
-import com.codecool.modules.Displayable;
-import com.codecool.modules.Order;
-import com.codecool.modules.Product;
+import com.codecool.models.Displayable;
+import com.codecool.models.Order;
+import com.codecool.models.Product;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -22,7 +22,7 @@ public class OrderDao extends Dao{
     }
 
     @Override
-    public void addElement(Object element) throws SQLException {
+    public void addElement(Object element) {
         Order order = (Order) element;
         connect();
         String pattern = "yyyyMMdd";

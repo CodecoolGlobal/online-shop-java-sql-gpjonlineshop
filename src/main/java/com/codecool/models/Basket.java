@@ -1,4 +1,4 @@
-package com.codecool.modules;
+package com.codecool.models;
 
 import java.util.ArrayList;
 import java.util.Iterator;

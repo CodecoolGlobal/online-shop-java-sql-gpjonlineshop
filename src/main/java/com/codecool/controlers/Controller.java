@@ -5,9 +5,8 @@ import com.codecool.dao.Dao;
 import com.codecool.dao.ProductDao;
 import com.codecool.dao.UserDao;
 import com.codecool.input.InputProvider;
-import com.codecool.modules.Command;
-import com.codecool.modules.Displayable;
-import com.codecool.user.Admin;
+import com.codecool.models.Command;
+import com.codecool.models.Displayable;
 import com.codecool.user.Customer;
 import com.codecool.user.User;
 import com.codecool.views.View;
@@ -16,8 +15,6 @@ import java.util.*;
 public abstract class  Controller {
 
     private static Controller controller;
-    Admin admin;
-    Customer customer;
     View view;
     Dao dao;
     HashMap<String, Runnable> actionMap;
@@ -29,7 +26,7 @@ public abstract class  Controller {
         dao = new ProductDao();
         view = new View();
         commandList = new ArrayList<>();
-        actionMap = new LinkedHashMap<String,Runnable>();
+        actionMap = new LinkedHashMap<>();
         view.setQuerryList(this.dao.getCategory("Starships"));
         this.actionMap.put("Dislay all categories", () -> view.setQuerryList(this.showAllCategories()));
         this.actionMap.put("Show all products", () -> view.setQuerryList(this.showAllProduct()));
@@ -86,24 +83,17 @@ public abstract class  Controller {
         String password = inputProvider.getValidateWord("Enter your password");
         List<Displayable> users = new UserDao().getTable(nick);
         if ((users.isEmpty())) {
+            //TODO throw new exception UserNotFoundException
             return;
 
         }
         User user = (User)users.get(0);
         if (user.getPassword().equals(password)) {
-            if (user instanceof Customer) {
-                this.customer = (Customer) user;
-                controller = new CustomerController();
-            } else {
-                this.admin = (Admin) user;
-                controller = new AdminController();
-            }
+            controller = user.getController();
         }
     }
 
     void logOut() {
-        this.admin = null;
-        this.customer = null;
         controller = new IncognitoController();
     }
 
@@ -118,6 +108,7 @@ public abstract class  Controller {
         String password = inputProvider.getValidateWord("Enter password");
         Date createAt = new Date(System.currentTimeMillis());
         int id = 1;
+        //todo constructor without id param
         return new Customer(id, name, surname, email, password, createAt);
     }
 

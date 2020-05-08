@@ -1,4 +1,4 @@
-package com.codecool.modules;
+package com.codecool.models;
 
 import com.codecool.dao.OrderDao;
 
@@ -22,11 +22,7 @@ public class Order {
 
     public void processOrder(){
         OrderDao dao = new OrderDao();
-        try {
-            dao.addElement(this);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        dao.addElement(this);
     }
 
     public String getOwner() {
