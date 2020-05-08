@@ -4,6 +4,7 @@ import com.codecool.dao.CategoryDao;
 import com.codecool.dao.ProductDao;
 import com.codecool.dao.UserDao;
 import com.codecool.modules.Category;
+import com.codecool.modules.Displayable;
 import com.codecool.modules.Product;
 import com.codecool.user.Customer;
 import com.codecool.user.User;
@@ -20,10 +21,28 @@ public class AdminController extends Controller {
     CategoryDao categoryDao = new CategoryDao();
 
     AdminController() {
+        addMethodsToHandleProduct();
+        addMethodsToHandleUser();
+        addMethodsToHandleCategory();
+        this.actionMap.put("Log out", this::logOut);
+    }
+
+    private void addMethodsToHandleCategory() {
+        this.actionMap.put("Add category", () -> categoryDao.addElement(getCategoryToAdd()));
+        this.actionMap.put("Delete category", () -> categoryDao.removeElement(getNameOfElement("category")));
+        this.actionMap.put("Edit name of category", () -> categoryDao.editElementName(
+                getNameOfElement("previous category"), getNameOfElement("new category")));
+    }
+
+    private void addMethodsToHandleProduct() {
         this.actionMap.put("Add product", () -> productDao.addElement(getProductToAdd()));
         this.actionMap.put("Delete product", () -> productDao.removeElement(getNameOfElement("product")));
         this.actionMap.put("Edit name of product", () -> productDao.editElementName(
                 getNameOfElement("previous product"), getNameOfElement("new product")));
+    }
+
+    private void addMethodsToHandleUser() {
+        this.actionMap.put("List all users", () -> view.setQuerryList(this.showAllUsers()));
         this.actionMap.put("Add user", () -> {
             try {
                 userDao.addElement(getCustomerToAdd());
@@ -40,11 +59,12 @@ public class AdminController extends Controller {
         });
         this.actionMap.put("Edit name of user", () -> userDao.editElementName(
                 getNameOfElement("previous user"), getNameOfElement("new user")));
-        this.actionMap.put("Add category", () -> categoryDao.addElement(getCategoryToAdd()));
-        this.actionMap.put("Delete category", () -> categoryDao.removeElement(getNameOfElement("category")));
-        this.actionMap.put("Edit name of category", () -> categoryDao.editElementName(
-                getNameOfElement("previous category"), getNameOfElement("new category")));
-        this.actionMap.put("Log out", this::logOut);
+    }
+
+    private List<Displayable> showAllUsers(){
+        String[] headers = new String[]{"Id", "Name", "Surname", "Email", "Created at"};
+        this.view.setQuerryHeaders(headers);
+        return this.userDao.getTable("%");
     }
 
     private Product getProductToAdd() {
