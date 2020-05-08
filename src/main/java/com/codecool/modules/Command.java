@@ -1,7 +1,5 @@
 package com.codecool.modules;
 
-import java.util.HashMap;
-
 public class Command implements Displayable {
     int id;
     String action;

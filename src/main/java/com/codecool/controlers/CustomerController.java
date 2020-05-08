@@ -4,8 +4,6 @@ import com.codecool.modules.Basket;
 import com.codecool.modules.Displayable;
 import com.codecool.modules.Order;
 import com.codecool.modules.Product;
-import com.codecool.user.Customer;
-
 import java.util.List;
 
 public class CustomerController extends Controller {
@@ -13,11 +11,10 @@ public class CustomerController extends Controller {
 
     CustomerController(){
         this.basket = new Basket();
-        this.actionMap.put("Add product to basket", () -> this.addProductToBasket());
-        this.actionMap.put("Edit product quantity", () -> this.editQuantityInBasket());
-        this.actionMap.put("Delete product from basket", () -> this.deleteProductFromBasket());
-        this.actionMap.put("Place an order", () -> this.placeAnOrder());
-        // this.actionMap.put("Check availability of product", this.dao.checkAvailabilityOfProduct());
+        this.actionMap.put("Add product to basket", this::addProductToBasket);
+        this.actionMap.put("Edit product quantity", this::editQuantityInBasket);
+        this.actionMap.put("Delete product from basket", this::deleteProductFromBasket);
+        this.actionMap.put("Place an order", this::placeAnOrder);
         this.actionMap.put("Log out", this::logOut);
     }
     public void addProductToBasket() {

@@ -3,10 +3,7 @@ package com.codecool.dao;
 import com.codecool.modules.Category;
 import com.codecool.modules.Displayable;
 import com.codecool.modules.Product;
-
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,7 +1,6 @@
 package com.codecool.user;
 
 import com.codecool.modules.Displayable;
-
 import java.util.Date;
 
 public abstract class User implements Displayable {
@@ -41,31 +40,16 @@ public abstract class User implements Displayable {
         return surname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
 }

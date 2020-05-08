@@ -1,7 +1,5 @@
 package com.codecool.modules;
 
-import java.util.List;
-
 public class Product implements Displayable {
 
     private int id;
