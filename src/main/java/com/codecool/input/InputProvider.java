@@ -48,16 +48,20 @@ public class InputProvider {
         System.out.println(String.format("%s: ", message));
         String inputString = "";
         while (inputString.isEmpty()) {
-            inputString = scanner.nextLine();
+            inputString = inputStringValidation(scanner.nextLine());
         }
-        char[] input = inputString.toCharArray();
-        StringBuilder builder = new StringBuilder();
-        for (char letter : input) {
-            if (Character.isAlphabetic(letter) || Character.isDigit(letter)) {
-                builder.append(letter);
-            }
+        return inputString;
+    }
+
+    private String inputStringValidation(String inputString) {
+        String checker = inputString.toLowerCase();
+        if (checker.contains(";") || checker.contains("'") || checker.contains("--") ||
+                checker.contains("/*") || checker.contains("*/") || checker.contains("insert") ||
+                checker.contains("xp_") || checker.contains("select") || checker.contains("drop") ||
+                checker.contains("delete") || checker.contains("update")) {
+            return "";
         }
-        return builder.toString();
+        return inputString;
     }
 
 
