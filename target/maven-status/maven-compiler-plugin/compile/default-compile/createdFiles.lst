@@ -3,6 +3,7 @@ com/codecool/dao/Dao.class
 com/codecool/modules/Basket$1.class
 com/codecool/modules/Order.class
 com/codecool/modules/OrderStatus.class
+com/codecool/dao/OrderDao.class
 com/codecool/Main.class
 com/codecool/modules/Product.class
 com/codecool/controlers/Controller.class

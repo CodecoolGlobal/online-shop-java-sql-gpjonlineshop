@@ -25,6 +25,8 @@ public class Product implements Displayable {
         return productList;
     }
 
+    public int getId() { return id; }
+
     public int getPrice() {
         return price;
     }

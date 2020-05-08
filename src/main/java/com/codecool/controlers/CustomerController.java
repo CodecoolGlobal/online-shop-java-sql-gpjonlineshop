@@ -2,6 +2,7 @@ package com.codecool.controlers;
 
 import com.codecool.modules.Basket;
 import com.codecool.modules.Displayable;
+import com.codecool.modules.Order;
 import com.codecool.modules.Product;
 import com.codecool.user.Customer;
 
@@ -19,7 +20,6 @@ public class CustomerController extends Controller {
         // this.actionMap.put("Check availability of product", this.dao.checkAvailabilityOfProduct());
         this.actionMap.put("Log out", this::logOut);
     }
-
     public void addProductToBasket() {
         List<Displayable> productList = dao.getTable("%");
         int selectedProductIndex = inputProvider.getProperActionKey(productList.size()+1, "Please enter products ID:");
@@ -29,7 +29,6 @@ public class CustomerController extends Controller {
         this.basket.addProduct(selectedProduct, selectedAmmount);
         this.view.setBasketList(this.basket.getProducts());
     }
-
     public void editQuantityInBasket(){
         List<Displayable> productList = dao.getTable("%");
         int selectedProductIndex = inputProvider.getProperActionKey(productList.size()+1, "Please enter products ID:");
@@ -47,7 +46,8 @@ public class CustomerController extends Controller {
         this.view.setBasketList(this.basket.getProducts());
     }
     public void placeAnOrder() {
-
+        Order order = new Order(this.basket, "Klient");
+        order.processOrder();
+        this.view.setQuerryList(this.dao.getTable("%"));
     }
-
 }
