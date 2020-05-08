@@ -54,8 +54,15 @@ public class CategoryDao extends Dao {
 
     @Override
     public void removeElement(String name) {
+        if (name.toLowerCase().equals("default")) return;
         connect();
         try {
+            ResultSet resultSet = statement.executeQuery("SELECT id FROM Category WHERE name =\'" + name + "\';");
+            int categoryId = resultSet.getInt("id");
+            resultSet.close();
+            statement.close();
+            statement.executeUpdate("UPDATE Product SET category = 8 WHERE category = " + categoryId + ";");
+            statement.close();
             statement.executeUpdate("DELETE FROM Category WHERE name =\'" + name + "\';");
             statement.close();
             connection.close();
